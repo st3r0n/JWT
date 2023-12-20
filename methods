@@ -12,11 +12,15 @@ if server does not verify the siganture we can just modify the paylaod without t
 2.accepting token with no siganture 
 set value of signature to none 
 
+
+
 3.brute forcing secret keys
 1.get the JWT token and use hashcat to geta secret key --> hashcat m 16300 hash wordlsist
 2.generate a new key from jwt editor in burp  --> llok at the encryption used and ganerate symmetrivc key encryption using either the secretkey or pregenerated keys 
 the K value is the secret key in base64 encoded
 modify and sign the key ---> use burp repeater to modify secret key and sign the key ---> make sure do not modu=ify header is selected
+
+
 
 
 4.jwt header parameter injection
@@ -34,3 +38,22 @@ i} use of jwk injection attack
 I generate a new rsa key from jwt editor and choose the key size from lag param of token
 II  send the request to burp repeater and change the paramaters you want to modify
 II click attack and select embedded jwk method and athen select the rsa key ganerated
+
+
+
+
+5.use of jku header injection  --- it requires a URL to be sued as jku fetches keys froma specific URL
+I generate new rsa key from jwt editor and select copy public key as JWK
+II in THEe web server that will serve the jwk paste the JWk key with format :
+{
+    "keys": [
+        {
+            "kty": "RSA",
+            "e": "AQAB",
+            "kid": "893d8f0b-061f-42c2-a4aa-5056e12b8ae7",
+            "n": "yy1wpYmffgXBxhAUJzHHocCuJolwDqql75ZWuCQ_cb33K2vh9mk6GPM9gNN4Y_qTVX67WhsN3JvaFYw"
+        }
+    ]
+}
+II now in repeater modify value of kid withe the generated key and add a jku parameter to header with value as url we created
+IV now sign the key and send it
