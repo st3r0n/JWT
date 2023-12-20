@@ -1,1 +1,22 @@
+jwt has three parts 
+header+payload +signature   each separated by a dot
+header and paylaod are base64 encoded
 
+vulns 
+server does ot ahave any info about token the token is self contained
+
++++++++++++++++ATTACKS++++++++++++++++
+1.server doesnot veify the signature at all
+if server does not verify the siganture we can just modify the paylaod without the nedd for siganture
+
+2.accepting token with no siganture 
+set value of signature to none 
+
+3.brute forcing secret keys
+1.get the JWT token and use hashcat to geta secret key --> hashcat m 16300 hash wordlsist
+2.generate a new key from jwt editor in burp  --> llok at the encryption used and ganerate symmetrivc key encryption using either the secretkey or pregenerated keys 
+the K value is the secret key in base64 encoded
+modify and sign the key ---> use burp repeater to modify secret key and sign the key ---> make sure do not modu=ify header is selected
+
+
+4.jwt header parameter injection
