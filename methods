@@ -57,3 +57,14 @@ II in THEe web server that will serve the jwk paste the JWk key with format :
 }
 II now in repeater modify value of kid withe the generated key and add a jku parameter to header with value as url we created
 IV now sign the key and send it
+
+
+
+6.using kid parameter
+kis is used to identify we can use any file for kid parameter bu /dev/null is used as it is availbale in almost all linux dvices
+I generate a symmetric key with suitable size now change the value of k to AA== wchich us equivalent to null 
+II in the repeater tab modify the cookie and point the kid paramter to ../../../../../dev/null and sign the key 
+
+
+
+
