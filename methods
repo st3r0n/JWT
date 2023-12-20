@@ -20,3 +20,17 @@ modify and sign the key ---> use burp repeater to modify secret key and sign the
 
 
 4.jwt header parameter injection
+some important headers 
+
+
+    jwk (JSON Web Key) - Provides an embedded JSON object representing the key.
+
+    jku (JSON Web Key Set URL) - Provides a URL from which servers can fetch a set of keys containing the correct key.
+
+    kid (Key ID) - Provides an ID that servers can use to identify the correct key in cases where there are multiple keys to choose from. Depending on the format of the key, this may have a matching kid parameter.
+these can be useful when web tokens uses assymetric cryptography like rsa
+
+i} use of jwk injection attack
+I generate a new rsa key from jwt editor and choose the key size from lag param of token
+II  send the request to burp repeater and change the paramaters you want to modify
+II click attack and select embedded jwk method and athen select the rsa key ganerated
