@@ -65,6 +65,13 @@ kis is used to identify we can use any file for kid parameter bu /dev/null is us
 I generate a symmetric key with suitable size now change the value of k to AA== wchich us equivalent to null 
 II in the repeater tab modify the cookie and point the kid paramter to ../../../../../dev/null and sign the key 
 
+other sueful headers include:cty , object x5c
 
+
+
+7.JWT algo confusion attacks
+1. wehn we have the public key available --------> useful location where it can be found /jwks.json or /.well-known/jwks.json
+
+2. when we have two jwts
 
 
